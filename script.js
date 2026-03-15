@@ -25,33 +25,40 @@ Yêu cầu:
 - tích hợp SEO tự nhiên
 `
 
+try{
+
 let response = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCIzre6mt6hI96DrDjpV7upn6kJg7wKfpA",
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=API_KEY_CUA_BAN",
 {
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-contents:[{
-parts:[{text:prompt}]
-}]
+contents:[
+{
+parts:[
+{ text: prompt }
+]
+}
+]
 })
 })
 
 let data = await response.json()
 
-let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Không tạo được mô tả"
+console.log(data)
+
+let text = data.candidates[0].content.parts[0].text
 
 document.getElementById("result").innerText = text
 
+}catch(error){
+
+console.error(error)
+
+document.getElementById("result").innerText = "Lỗi khi gọi AI"
+
 }
-function copyText(){
-
-let text = document.getElementById("result").innerText
-
-navigator.clipboard.writeText(text)
-
-alert("Đã copy mô tả")
 
 }
