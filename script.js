@@ -1,5 +1,4 @@
-const API_KEY = "AIzaSyDzGX7OVg5iJqphhXeil-Q9x7EbcDXH0JA";
-
+const API_KEY = process.env.GEMINI_API_KEY;
 async function generate(){
 
 let product = document.getElementById("product").value;
@@ -30,7 +29,7 @@ Yêu cầu:
 try{
 
 let response = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+`https://generativelanguage.googleapis.com/v1beta/models/gemini:generateContent?key=${API_KEY}`,
 {
 method:"POST",
 headers:{
