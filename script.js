@@ -26,7 +26,7 @@ Yêu cầu:
 `
 
 let response = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini:generateContent?key=AIzaSyBeYzaBb2shbnSta9I3uuVIKkGyCUvysc0",
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBeYzaBb2shbnSta9I3uuVIKkGyCUvysc0",
 {
 method:"POST",
 headers:{
@@ -44,14 +44,5 @@ let data = await response.json()
 let text = data.candidates[0].content.parts[0].text
 
 document.getElementById("result").innerText = text
-
-}
-function copyText(){
-
-let text = document.getElementById("result").innerText
-
-navigator.clipboard.writeText(text)
-
-alert("Đã copy mô tả")
 
 }
