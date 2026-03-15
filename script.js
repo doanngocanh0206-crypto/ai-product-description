@@ -1,9 +1,11 @@
+const API_KEY = "AIzaSyDzGX7OVg5iJqphhXeil-Q9x7EbcDXH0JA";
+
 async function generate(){
 
-let product = document.getElementById("product").value
-let features = document.getElementById("features").value
-let benefits = document.getElementById("benefits").value
-let keywords = document.getElementById("keywords").value
+let product = document.getElementById("product").value;
+let features = document.getElementById("features").value;
+let benefits = document.getElementById("benefits").value;
+let keywords = document.getElementById("keywords").value;
 
 let prompt = `
 Viết mô tả sản phẩm thương mại điện tử hấp dẫn.
@@ -20,15 +22,15 @@ Từ khóa SEO:
 ${keywords}
 
 Yêu cầu:
-- có bullet point tính năng
-- có đoạn văn marketing
-- tích hợp SEO tự nhiên
-`
+- Có bullet point cho tính năng
+- Có đoạn văn marketing
+- Tích hợp từ khóa SEO tự nhiên
+`;
 
 try{
 
 let response = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDzGX7OVg5iJqphhXeil-Q9x7EbcDXH0JA",
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
 {
 method:"POST",
 headers:{
@@ -43,22 +45,33 @@ parts:[
 }
 ]
 })
-})
+}
+);
 
-let data = await response.json()
+let data = await response.json();
 
-console.log(data)
+console.log(data);
 
-let text = data.candidates[0].content.parts[0].text
+let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Không tạo được mô tả";
 
-document.getElementById("result").innerText = text
+document.getElementById("result").innerText = text;
 
 }catch(error){
 
-console.error(error)
+console.error(error);
 
-document.getElementById("result").innerText = "Lỗi khi gọi AI"
+document.getElementById("result").innerText = "Lỗi khi gọi AI";
 
 }
+
+}
+
+function copyText(){
+
+let text = document.getElementById("result").innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Đã copy mô tả");
 
 }
