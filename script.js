@@ -26,7 +26,7 @@ Yêu cầu:
 `
 
 let response = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyABUus8tZ7FidmXj4uaMVRILc__SLcZZGs",
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBeYzaBb2shbnSta9I3uuVIKkGyCUvysc0",
 {
 method:"POST",
 headers:{
